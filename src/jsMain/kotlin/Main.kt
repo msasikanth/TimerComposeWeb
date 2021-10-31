@@ -25,7 +25,9 @@ fun main() {
             }
         }
 
-        Div(attrs = { classes(AppStyleSheet.background) }) {
+        Div(attrs = {
+            classes(AppStyleSheet.background)
+        }) {
             Div(attrs = {
                 classes(
                     AppStyleSheet.text,
