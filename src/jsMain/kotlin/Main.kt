@@ -26,7 +26,12 @@ fun main() {
         }
 
         Div(attrs = { classes(AppStyleSheet.background) }) {
-            Div(attrs = { classes(AppStyleSheet.text) }) {
+            Div(attrs = {
+                classes(
+                    AppStyleSheet.text,
+                    AppStyleSheet.disableTextSelect
+                )
+            }) {
                 val time = Instant.fromEpochMilliseconds(timer.inWholeMilliseconds)
                 Text(formatTime(time))
             }

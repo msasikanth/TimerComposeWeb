@@ -26,4 +26,11 @@ object AppStyleSheet : StyleSheet() {
             color(Color.red)
         }
     }
+
+    val disableTextSelect by style {
+        property("-webkit-user-select", "none")
+        property("-moz-user-select", "none")
+        property("-ms-user-select", "none")
+        property("user-select", "none")
+    }
 }
