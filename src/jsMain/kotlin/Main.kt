@@ -1,4 +1,7 @@
-import androidx.compose.runtime.*
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import dev.sasikanth.web.AppStyleSheet
 import dev.sasikanth.web.TimerText
 import kotlinx.coroutines.delay
@@ -12,11 +15,12 @@ import kotlin.time.ExperimentalTime
 @OptIn(ExperimentalTime::class)
 fun main() {
     val interval = Duration.seconds(1)
+    var timer by mutableStateOf(Duration.minutes(10))
 
     renderComposable(rootElementId = "root") {
-        Style(AppStyleSheet)
+        val time = Instant.fromEpochMilliseconds(timer.inWholeMilliseconds)
 
-        var timer by remember { mutableStateOf(Duration.minutes(10)) }
+        Style(AppStyleSheet)
 
         LaunchedEffect(timer) {
             if (timer != Duration.ZERO) {
@@ -28,7 +32,6 @@ fun main() {
         Div(attrs = {
             classes(AppStyleSheet.background)
         }) {
-            val time = Instant.fromEpochMilliseconds(timer.inWholeMilliseconds)
             TimerText(time)
         }
     }
