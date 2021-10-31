@@ -28,17 +28,17 @@ fun main() {
         Div(attrs = { classes(AppStyleSheet.background) }) {
             Div(attrs = { classes(AppStyleSheet.text) }) {
                 val time = Instant.fromEpochMilliseconds(timer.inWholeMilliseconds)
-                val formattedString = time
-                    .toString()
-                    .split("T")
-                    .get(index = 1)
-                    .replace("Z", "")
-                    .split(":")
-                    .drop(1)
-                    .joinToString(":")
-
-                Text(formattedString)
+                Text(formatTime(time))
             }
         }
     }
 }
+
+private fun formatTime(time: Instant) = time
+    .toString()
+    .split("T")
+    .get(index = 1)
+    .replace("Z", "")
+    .split(":")
+    .drop(1)
+    .joinToString(":")
